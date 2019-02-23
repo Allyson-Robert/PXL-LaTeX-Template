@@ -1,4 +1,4 @@
-% Standard Class written for the express purpose of creating PXL house styles articles
+%    Standard Class written for the express purpose of creating PXL house styles articles
 %    Copyright (C) 2019  Allyson Robert
 %
 %    This program is free software: you can redistribute it and/or modify
