@@ -22,6 +22,9 @@ This is a LaTeX documentclass file that can be used by putting this
 file in the same directory as the main project file and including the
 '\documentclass{pxldoc}' at the top of said file.
 
+Please always include a citation of the original author in projects 
+using this document class
+
 # main.tex
 Example of main file using this document class
 
