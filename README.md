@@ -1,5 +1,5 @@
 # License
-Standard Class written for the express purpose of creating PXL house styles articles
+Standard LaTeX Document Class written for PXL house styles articles
 Copyright (C) 2019  Allyson Robert
  
 This program is free software: you can redistribute it and/or modify
@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
  
 Last Edit: 23/02/2019
+Credit: https://github.com/Allyson-Robert/pxldoc
 
 # pxldoc.cls
 This is a LaTeX documentclass file that can be used by putting this
