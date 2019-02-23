@@ -34,5 +34,5 @@ Empty files meant to receive additional preamble code and actual text
 content respectively
 
 # PXL_Logo.png
-The logo of the university-college PXL. For the use of this logo refer
+The logo of the PXL University College. For the use of this logo refer
 to their website. https://www.pxl.be/Pub/Over-PXL/Huisstijl/PXL-logos.html
