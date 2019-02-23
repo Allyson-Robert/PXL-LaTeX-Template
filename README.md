@@ -1,2 +1,1 @@
-# pxldoc
-PXL Document Class
+# License
