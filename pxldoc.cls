@@ -15,6 +15,7 @@
 %    along with this program. If not, see <https://www.gnu.org/licenses/>.
 %
 %    Last Edit: 23/02/2019
+%    Source: https://github.com/Allyson-Robert/pxldoc
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{pxldoc}[2019/02/23 A PXL document class]
