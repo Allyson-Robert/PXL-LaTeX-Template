@@ -35,10 +35,13 @@
 \RequirePackage{amsmath, amssymb}
 \RequirePackage{relsize}
 \RequirePackage[normalem]{ulem}
+\RequirePackage{mathabx}
+\RequirePackage{polynom}
 
 % Header
 \RequirePackage{fancyhdr}
 \RequirePackage{titling}
+\RequirePackage{lastpage}
 
 % Aesthetics, layout and font
 \RequirePackage[dvipsnames]{xcolor}
@@ -47,6 +50,7 @@
 \RequirePackage[explicit]{titlesec}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{helvet}
+\RequirePackage{chngcntr}
 
 % Physics-y physics stuff
 \RequirePackage{physics}
@@ -60,6 +64,15 @@
 % Improvements
 \RequirePackage{enumitem}
 \RequirePackage{chngcntr}
+
+% File management
+\RequirePackage{import}
+
+% Custom Environments
+\RequirePackage{thmtools}
+\RequirePackage{framed}
+\RequirePackage{mdframed}
+\RequirePackage{tocloft}
 
 % Misc items
 \RequirePackage{lipsum}% Dummy text
@@ -76,6 +89,19 @@
 
 % Arial font
 \renewcommand{\familydefault}{\sfdefault}
+
+%Table spacing
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}         
+% = `top' strut                                  
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   
+% = `bottom' strut
+
+% Change section numbering
+\counterwithin*{section}{part}
+\renewcommand\thesection{\arabic{part}.\arabic{section}}
+
+% Color definitions
+\newcommand{\CB}{\color{black}}
 
 % Edit paragraph settings
 \setlength\parindent{0pt} % no indentation
@@ -113,6 +139,8 @@
 \counterwithin*{paragraph}{subsection}
 \crefname{paragraph}{paragraaf}{paragrafen}
 \Crefname{paragraph}{Paragraaf}{Paragrafen}
+\crefname{equation}{vergelijking}{vergelijkingen}
+\Crefname{equation}{Vergelijking}{Vergelijkingen}
 
 % Make sure the figures are always scaled
 \setkeys{Gin}{width=\linewidth}
@@ -131,6 +159,9 @@
 % Defince \course{} element
 \newcommand*{\course}[1]{\gdef\thecourse{#1}}
 \newcommand*{\thecourse}{Insert \textbackslash course\{\} below \textbackslash date\{\}}
+
+% Edit cref junction symbol
+\newcommand{\crefrangeconjunction}{--}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definition of the footer %
@@ -151,3 +182,130 @@
 % Resize header\footer rule widths
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{1pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Defined Environments   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Colours
+\definecolor{TFTitleColor}{RGB}{0, 0, 0}
+\definecolor{TFFrameColor}{RGB}{189, 189, 255}
+\definecolor{shadecolor}{RGB}{255, 230, 230}
+\definecolor{mypink}{RGB}{255, 230, 230}
+\definecolor{mydarkpink}{RGB}{255, 133, 133}
+\definecolor{mygreen}{RGB}{228, 251, 240}
+\definecolor{mydarkgreen}{RGB}{78, 228, 156}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Example Environment %
+\newcounter{example}[section]
+\renewcommand{\theexample}{\thesection.\arabic{example}}
+\newenvironment{example}[1]{
+    \refstepcounter{example}\par
+    \begin{titled-frame}{Voorbeeld~\theexample ~#1}
+}{
+    \end{titled-frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition Environment %
+\newcounter{definition}[section]
+\renewcommand{\thedefinition}{\thesection.\arabic{definition}}
+\newenvironment{definition}[1]{%
+	\refstepcounter{definition}\mdfsetup{%
+		frametitle={%
+			\uline{\textbf{Definitie~\thedefinition:~#1}}
+		}
+	}%
+	\mdfsetup{ innertopmargin=10pt,linecolor=mydarkpink,%
+		linewidth=2pt }
+	\begin{mdframed}[backgroundcolor=mypink, nobreak=true]\relax%
+        }{
+    \end{mdframed}
+}
+\crefname{definition}{definitie}{definities} 
+\Crefname{definition}{Definitie}{Definities}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise Environment %
+\makeatletter
+\newcommand\listofexercisesname{Oefenignenlijst}
+\newcommand\listofexercises{
+	\phantomsection\addcontentsline{toc}{section}{Oefenignenlijst}
+	\section*{\listofexercisesname}
+	\@starttoc{exs}
+} % Makes a list of all the problems
+\makeatother
+
+\newcounter{exercise}[section]
+\renewcommand{\theexercise}{\arabic{exercise} (\thesection) }
+
+\newenvironment{exercise}[2][]{
+    \refstepcounter{exercise}
+    \ifx\\#1\\
+    	\addcontentsline{exs}{subsection}{Oefening ~\theexercise ~#2}
+    \else
+    	\addcontentsline{exs}{subsection}{Oefening ~\theexercise ~#1}
+    \fi
+   	\begin{leftbar}{\textbf{Oefening~\theexercise ~#2}\npar}\itshape
+}{
+    \end{leftbar}\npar
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem Environment %
+\makeatletter
+\newcommand\listofthmname{Lijst der stellingen}
+\newcommand\listofthm{
+	\phantomsection\addcontentsline{toc}{section}{Lijst der stellingen}
+	\section*{\listofthmname}
+	\@starttoc{thm}
+} % Makes a list of all the theorems
+
+% Theorem Environment %
+\newcounter{theorem}[section]
+\renewcommand{\thetheorem}{\thesection.\arabic{theorem}}
+
+\newenvironment{theorem}[2][]{%
+	\refstepcounter{theorem}\mdfsetup{%
+		frametitle={%
+			\textbf{\textit{\uline{Eigenschap~\thetheorem:~#1}}}
+		}
+	}%
+	\mdfsetup{ innertopmargin=10pt,linecolor=mydarkgreen,%
+		linewidth=2pt }
+	\begin{mdframed}[backgroundcolor=mygreen, nobreak=true]\relax%
+		\label{th:#2}
+	}{
+	\end{mdframed}
+}
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+% Proof environment %
+\newcommand{\bref}[1]{
+	\hypersetup{linkcolor=black}%
+	\ref{#1}%
+	\hypersetup{linkcolor=red}
+}
+\newenvironment{proof}[1]{
+	\mdfsetup{%
+		frametitle={%
+			\textbf{\textit{\uline{Proof of theorem\bref{th:#1}}}}
+		}
+	}%
+	\mdfsetup{innertopmargin=10pt,linecolor=mydarkgreen,%
+		linewidth=2pt }
+	\begin{mdframed}\relax%
+	}{
+	\end{mdframed}
+} 
+
+% Enumulti enviroment
+\newenvironment{enumulti}[1]{
+	\begin{multicols}{#1}
+		\begin{enumerate}
+}{
+		\end{enumerate}
+	\end{multicols}
+}
