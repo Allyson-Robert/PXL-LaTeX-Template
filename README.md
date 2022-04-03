@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
  
 Last Edit: 23/02/2019
-Credit: https://github.com/Allyson-Robert/pxldoc
+Credit: https://github.com/Allyson-Robert/PXL-LaTeX-Template
 
 # pxldoc.cls
 This is a LaTeX documentclass file that can be used by putting this
