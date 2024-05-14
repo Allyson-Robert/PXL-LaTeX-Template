@@ -1,3 +1,9 @@
+# NOTE AND DISCLAIMER
+I am not affiliated with Hogeschool PXL in any way.
+This template may therefore be out of date but feedback/requests are welcomed.
+Feel free to submit issues requesting improvements or fixes or create a pull requests if you implemented this yourself.
+If the template is too far out of sync with the existing Word templates provided by Hogeschool PXL please contact me by submitting an issue.
+
 # License
 Standard LaTeX Document Class written for PXL house styles articles
 Copyright (C) 2019  Allyson Robert
